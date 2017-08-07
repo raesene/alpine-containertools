@@ -23,7 +23,7 @@ chmod +x /usr/local/bin/etcdctl && rm -rf etcd-v3.1.5-linux-amd64 && rm -f etcd-
 COPY boltbrowser /usr/local/bin
 
 #Get AmIcontained
-RUN curl -O https://github.com/jessfraz/amicontained/releases/download/v0.0.8/amicontained-linux-amd64 && \
+RUN curl -OL https://github.com/jessfraz/amicontained/releases/download/v0.0.8/amicontained-linux-amd64 && \
 cp amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
 COPY entrypoint.sh /
