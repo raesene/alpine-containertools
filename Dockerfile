@@ -1,7 +1,7 @@
 FROM alpine:3.5
 MAINTAINER Rory McCune <rorym@mccune.org.uk>
 
-ENTRYPOINT ["/entrypoint.sh"]
+
 
 RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
@@ -28,3 +28,6 @@ cp amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/b
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+
+#We can run this but lets let it be overridden with a CMD 
+CMD ["/entrypoint.sh"]
