@@ -6,9 +6,13 @@ MAINTAINER Rory McCune <rorym@mccune.org.uk>
 RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
-#Get kubectl modify the version for later ones, and damn but this is a big binary!
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.6.1/bin/linux/amd64/kubectl && \
-chmod +x kubectl && mv kubectl /usr/local/bin
+#Get kubectl modify the version for later ones, and damn but this is a big binary! this is 16 for older clusters
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.6.12/bin/linux/amd64/kubectl && \
+chmod +x kubectl && mv kubectl /usr/local/bin/kubectl16
+
+#Another Kubectl need different versions as the older clusters won't work with newer clients
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl && \
+chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
 
 #Get docker we're not using the apk as it includes the server binaries that we don't need
 RUN curl -O https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz && tar -xzvf docker-17.04.0-ce.tgz && \
