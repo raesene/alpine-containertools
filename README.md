@@ -21,7 +21,7 @@ docker client
 
 Running Instructions
 --
-`docker run -d -p 2200:22 raesene/alpine-nettools`
+`docker run -d -p 2200:22 raesene/alpine-containertools`
 
 `docker ps` - Get the container name
 
