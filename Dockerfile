@@ -42,6 +42,10 @@ RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-a
 tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm && \
 chmod +x /usr/local/bin/helm && rm -rf linux-amd64
 
+#Put a Sample Privileged Pod Chart in the Image
+RUN mkdir /charts
+COPY privchart-0.1.0.tgz /charts/
+
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
