@@ -37,6 +37,11 @@ mv boltbrowser.linux64 /usr/local/bin/boltbrowser && chmod +x /usr/local/bin/bol
 RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.7/amicontained-linux-amd64 && \
 mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
+#Get Helm
+RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
+tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm && \
+chmod +x /usr/local/bin/helm && rm -rf linux-amd64
+
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
