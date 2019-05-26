@@ -1,5 +1,7 @@
-FROM alpine:3.7
-MAINTAINER Rory McCune <rorym@mccune.org.uk>
+FROM alpine:3.9
+
+
+LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 
 
@@ -10,25 +12,30 @@ sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.6.12/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl16
 
-#Another Kubectl need different versions as the older clusters won't work with newer clients
+#Kubernetes 1.8 for medium old clusters
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl && \
+chmod +x kubectl && mv kubectl /usr/local/bin/kubectl18
+
+#Kubernetes 1.12 for more modern clusters
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.12.8/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
 
 #Get docker we're not using the apk as it includes the server binaries that we don't need
-RUN curl -O https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz && tar -xzvf docker-17.04.0-ce.tgz && \
-cp docker/docker /usr/local/bin && chmod +x /usr/local/bin/docker && rm -rf docker/ && rm -f docker-17.04.0-ce.tgz
+RUN curl -OL https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.tgz && tar -xzvf docker-18.09.6.tgz && \
+cp docker/docker /usr/local/bin && chmod +x /usr/local/bin/docker && rm -rf docker/ && rm -f docker-18.09.6.tgz
 
 #Get etcdctl
-RUN curl -OL https://github.com/coreos/etcd/releases/download/v3.1.5/etcd-v3.1.5-linux-amd64.tar.gz && \
-tar -xzvf etcd-v3.1.5-linux-amd64.tar.gz && cp etcd-v3.1.5-linux-amd64/etcdctl /usr/local/bin && \
-chmod +x /usr/local/bin/etcdctl && rm -rf etcd-v3.1.5-linux-amd64 && rm -f etcd-v3.1.5-linux-amd64.tar.gz
+RUN curl -OL https://github.com/etcd-io/etcd/releases/download/v3.3.13/etcd-v3.3.13-linux-amd64.tar.gz && \
+tar -xzvf etcd-v3.3.13-linux-amd64.tar.gz && cp etcd-v3.3.13-linux-amd64/etcdctl /usr/local/bin && \
+chmod +x /usr/local/bin/etcdctl && rm -rf etcd-v3.3.13-linux-amd64 && rm -f etcd-v3.3.13-linux-amd64.tar.gz
 
-#Copy the bolt browser binary in.
-COPY boltbrowser /usr/local/bin
+#Get Boltbrowser
+RUN curl -OL https://bullercodeworks.com/downloads/boltbrowser/boltbrowser.linux64 && \
+mv boltbrowser.linux64 /usr/local/bin/boltbrowser && chmod +x /usr/local/bin/boltbrowser
 
 #Get AmIcontained
-RUN curl -OL https://github.com/jessfraz/amicontained/releases/download/v0.0.8/amicontained-linux-amd64 && \
-cp amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
+RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.7/amicontained-linux-amd64 && \
+mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
