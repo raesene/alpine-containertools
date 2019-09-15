@@ -5,7 +5,7 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 
 
-RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat && \
+RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat nmap && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 #Get kubectl modify the version for later ones, and damn but this is a big binary! this is 16 for older clusters
