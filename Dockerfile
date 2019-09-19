@@ -51,8 +51,10 @@ RUN helm init --client-only
 
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
-COPY privchart-0.1.0.tgz /charts/
-COPY privsshchart-0.1.0.tgz /charts/
+COPY /charts/* /charts/
+
+RUN mkdir /manifests
+COPY /manifests/* /manifests/
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
