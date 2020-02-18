@@ -8,16 +8,16 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
-#Get kubectl modify the version for later ones, and damn but this is a big binary! this is 16 for older clusters
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.6.12/bin/linux/amd64/kubectl && \
-chmod +x kubectl && mv kubectl /usr/local/bin/kubectl16
 
-#Kubernetes 1.8 for medium old clusters
+#Kubernetes 1.8 for old clusters
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl18
 
-#Kubernetes 1.12 for more modern clusters
+#Kubernetes 1.12 for medium old clusters
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.12.8/bin/linux/amd64/kubectl && \
+chmod +x kubectl && mv kubectl /usr/local/bin/kubectl112
+
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.16.7/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
 
 #Get docker we're not using the apk as it includes the server binaries that we don't need
@@ -34,11 +34,11 @@ RUN curl -OL https://bullercodeworks.com/downloads/boltbrowser/boltbrowser.linux
 mv boltbrowser.linux64 /usr/local/bin/boltbrowser && chmod +x /usr/local/bin/boltbrowser
 
 #Get AmIcontained
-RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.7/amicontained-linux-amd64 && \
+RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.9/amicontained-linux-amd64 && \
 mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
 #Get Rakkess
-RUN curl -Lo rakkess.gz https://github.com/corneliusweig/rakkess/releases/download/v0.4.0/rakkess-linux-amd64.gz && \
+RUN curl -Lo rakkess.gz https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-linux-amd64.gz && \
   gunzip rakkess.gz && chmod +x rakkess && mv rakkess /usr/local/bin/
 
 #Get Helm

@@ -28,4 +28,4 @@ __create_hostkeys
 __create_user
 __ip_address
 
-exec /usr/sbin/sshd -D -e "$@"
+exec /usr/sbin/sshd -D -p 3456 -e "$@"
