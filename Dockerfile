@@ -38,8 +38,8 @@ RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4
 mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
 #Get Rakkess
-RUN curl -Lo rakkess.gz https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-linux-amd64.gz && \
-  gunzip rakkess.gz && chmod +x rakkess && mv rakkess /usr/local/bin/
+RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-amd64-linux.tar.gz && \
+ tar -xzvf rakkess-amd64-linux.tar.gz && chmod +x rakkess-amd64-linux && mv rakkess-amd64-linux /usr/local/bin/rakkess
 
 #Get Helm
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
