@@ -18,6 +18,8 @@ etcd
 kubectl
 docker client
 
+There are also some sample Helm Charts and manifests in `/charts` and `/manifests` respectively, which may be useful on tests remember to test these before use!
+
 
 Running Instructions
 --

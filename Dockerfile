@@ -5,7 +5,7 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 
 
-RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat && \
+RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat bash && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 
@@ -51,7 +51,10 @@ RUN helm init --client-only
 
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
-COPY privchart-0.1.0.tgz /charts/
+COPY /charts/* /charts/
+
+RUN mkdir /manifests
+COPY /manifests/* /manifests/
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh

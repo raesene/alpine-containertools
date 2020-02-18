@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+ 
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/raesene/alpine-containertools/alpine-containertools
+    - name: login to the gh docker repo
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login docker.pkg.github.com -u raesene -p $DOCKER_PASSWORD
+    - name: push to gh docker repo
+      run: docker push docker.pkg.github.com/raesene/alpine-containertools/alpine-containertools
+      
+      
