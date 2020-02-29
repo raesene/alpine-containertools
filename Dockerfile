@@ -50,6 +50,11 @@ RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-a
 tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \
 chmod +x /usr/local/bin/helm2 && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-amd64.tar.gz
 
+#Get Helm3
+RUN curl -OL https://get.helm.sh/helm-v3.1.1-linux-amd64.tar.gz && \
+tar -xzvf helm-v3.1.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm3 && \
+chmod +x /usr/local/bin/helm3 && rm -rf linux-amd64 && rm -f helm-v3.1.1-linux-amd64.tar.gz
+
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
 COPY /charts/* /charts/
