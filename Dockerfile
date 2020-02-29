@@ -37,6 +37,10 @@ mv boltbrowser.linux64 /usr/local/bin/boltbrowser && chmod +x /usr/local/bin/bol
 RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.9/amicontained-linux-amd64 && \
 mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
+#Get Reg
+RUN curl -OL https://github.com/genuinetools/reg/releases/download/v0.16.1/reg-linux-amd64 && \
+mv reg-linux-amd64 /usr/local/bin/reg && chmod +x /usr/local/bin/reg
+
 #Get Rakkess
 RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-amd64-linux.tar.gz && \
  tar -xzvf rakkess-amd64-linux.tar.gz && chmod +x rakkess-amd64-linux && mv rakkess-amd64-linux /usr/local/bin/rakkess
@@ -44,7 +48,7 @@ RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/r
 #Get Helm
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
 tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \
-chmod +x /usr/local/bin/helm && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-amd64.tar.gz
+chmod +x /usr/local/bin/helm2 && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-amd64.tar.gz
 
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
