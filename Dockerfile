@@ -45,7 +45,7 @@ mv reg-linux-amd64 /usr/local/bin/reg && chmod +x /usr/local/bin/reg
 RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-amd64-linux.tar.gz && \
  tar -xzvf rakkess-amd64-linux.tar.gz && chmod +x rakkess-amd64-linux && mv rakkess-amd64-linux /usr/local/bin/rakkess
 
-#Get Helm
+#Get Helm2
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
 tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \
 chmod +x /usr/local/bin/helm2 && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-amd64.tar.gz
@@ -53,6 +53,8 @@ chmod +x /usr/local/bin/helm2 && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
 COPY /charts/* /charts/
+
+COPY /bin/conmachi /usr/local/bin/
 
 RUN mkdir /manifests
 COPY /manifests/* /manifests/
