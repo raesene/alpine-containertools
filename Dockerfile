@@ -5,7 +5,9 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 
 
-RUN apk --update add openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat bash && \
+RUN apk --update add python3 py3-netifaces py3-prettytable py3-certifi \
+py3-chardet py3-future py3-idna py3-netaddr py3-parsing py3-six\
+ openssh nmap nmap-scripts curl tcpdump bind-tools jq nmap-ncat bash && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 
@@ -17,6 +19,7 @@ chmod +x kubectl && mv kubectl /usr/local/bin/kubectl18
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.12.8/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl112
 
+#Kubernetes 1.16 for newer clusters
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.16.7/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
 
@@ -44,6 +47,13 @@ mv reg-linux-amd64 /usr/local/bin/reg && chmod +x /usr/local/bin/reg
 #Get Rakkess
 RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/rakkess-amd64-linux.tar.gz && \
  tar -xzvf rakkess-amd64-linux.tar.gz && chmod +x rakkess-amd64-linux && mv rakkess-amd64-linux /usr/local/bin/rakkess
+
+#Get kubectl-who-can
+RUN curl -OL https://github.com/aquasecurity/kubectl-who-can/releases/download/v0.1.0/kubectl-who-can_linux_x86_64.tar.gz && \
+tar -xzvf kubectl-who-can_linux_x86_64.tar.gz && cp kubectl-who-can /usr/local/bin && rm -f kubectl-who-can_linux_x86_64.tar.gz
+
+#Get Kube-Hunter
+RUN pip3 install kube-hunter
 
 #Get Helm2
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
