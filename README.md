@@ -1,32 +1,37 @@
-Alpine Container Tools Docker Image
---
+# Alpine Container Tools Docker Image
 
-I had a need for a container that'll keep running as a service and have some common networking and container tools in it.
-Also need something which doesn't have a default password, so this will generate a random one.
+This is an image with a load of common container tooling, for use when you need various containers tools :) It's generally targeted at security assessment tools.
 
-Based on alpine to keep the image nice and small.
+# Tools installed
 
-Setup based on ideas from https://github.com/fedora-cloud/Fedora-Dockerfiles/blob/master/ssh/entrypoint.sh and
-https://github.com/sickp/docker-alpine-sshd/blob/master/versions/7.4/Dockerfile
+## General Tools
 
-Tools installed
---
-openssh
-nmap
-curl
-etcd
-kubectl
-docker client
+- **openssh** 
+- **nmap**
+- **curl**
+
+## Container Tools
+
+- **etcdctl** - useful for connecting to etcd instances
+- **kubectl** - useful for connecting to Kubernetes API servers
+  * There's also kubectl18 and kubectl112 for older clusters
+- **docker** (client) - useful for connecting to Docker instances
+- **helm2** and **helm3** - useful for deploying charts (see below) or querying Tiller services (with helm2)
+- **amicontained** - https://github.com/genuinetools/amicontained/
+- **reg** - https://github.com/genuinetools/reg
+- **conmachi** - https://github.com/nccgroup/conmachi
 
 There are also some sample Helm Charts and manifests in `/charts` and `/manifests` respectively, which may be useful on tests remember to test these before use!
 
 
-Running Instructions
---
-`docker run -d -p 2200:22 raesene/alpine-containertools`
+## Running Instructions
 
-`docker ps` - Get the container name
+You can run this container with just a shell for interactive access with 
 
-`docker logs <container>` to get the root password
+`docker run -it raesene/alpine-containertools /bin/bash`
 
-`ssh root@<ip>` 
+Alternatively if you don't specify a command it'll launch an SSH server with a random password. To use this with a docker image first, `docker run -d -p 2200:22 raesene/alpine-containertools` then `docker ps` to get the container name, then `docker logs <container>` to get the root password, then `ssh root@<ip>` 
+
+
+The SSH setup was based on ideas from https://github.com/fedora-cloud/Fedora-Dockerfiles/blob/master/ssh/entrypoint.sh and
+https://github.com/sickp/docker-alpine-sshd/blob/master/versions/7.4/Dockerfile
