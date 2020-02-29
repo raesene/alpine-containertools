@@ -43,11 +43,8 @@ RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/r
 
 #Get Helm
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
-tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm && \
+tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \
 chmod +x /usr/local/bin/helm && rm -rf linux-amd64 && rm -f helm-v2.13.1-linux-amd64.tar.gz
-
-#Initialize Helm
-RUN helm init --client-only
 
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
