@@ -71,6 +71,8 @@ COPY /charts/* /charts/
 
 COPY /bin/conmachi /usr/local/bin/
 
+COPY /bin/escape.sh /usr/local/bin/
+
 RUN mkdir /manifests
 COPY /manifests/* /manifests/
 
