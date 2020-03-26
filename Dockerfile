@@ -79,5 +79,8 @@ COPY /manifests/* /manifests/
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
+# Set the ETCD API to 3
+ENV ETCDCTL_API 3
+
 #We can run this but lets let it be overridden with a CMD 
 CMD ["/entrypoint.sh"]
