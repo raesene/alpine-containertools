@@ -55,6 +55,10 @@ tar -xzvf kubectl-who-can_linux_x86_64.tar.gz && cp kubectl-who-can /usr/local/b
 #Get Kube-Hunter
 RUN pip3 install kube-hunter
 
+#Get Break out the Box
+RUN curl -OL https://github.com/brompwnie/botb/releases/download/1.8.0/botb-linux-amd64 && \
+mv botb-linux-amd64 /usr/local/bin/botb && chmod +x /usr/local/bin/botb 
+
 #Get Helm2
 RUN curl -OL https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
 tar -xzvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \

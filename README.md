@@ -24,6 +24,7 @@ This is an image with a load of common container tooling, for use when you need 
 - **rakkess** - https://github.com/corneliusweig/rakkess - Tool for analyzing RBAC permissions
 - **kubectl-who-can** - https://github.com/aquasecurity/kubectl-who-can - Tool for analyzing RBAC permissions
 - **kube-hunter** - https://github.com/aquasecurity/kube-hunter - Tool for pentesting Kubernetes clusters
+- **break-out-the-box** - https://github.com/brompwnie/botb - Tool for container analysis and exploitation
 
 There are also some sample Helm Charts and manifests in `/charts` and `/manifests` respectively, which may be useful on tests remember to test these before use!
 
