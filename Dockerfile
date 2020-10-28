@@ -40,6 +40,10 @@ mv boltbrowser.linux64 /usr/local/bin/boltbrowser && chmod +x /usr/local/bin/bol
 RUN curl -OL https://github.com/genuinetools/amicontained/releases/download/v0.4.9/amicontained-linux-amd64 && \
 mv amicontained-linux-amd64 /usr/local/bin/amicontained && chmod +x /usr/local/bin/amicontained
 
+#Get botb
+RUN curl -OL https://github.com/brompwnie/botb/releases/download/1.8.0/botb-linux-amd64 && \
+mv botb-linux-amd64 /usr/local/bin/botb && chmod +x /usr/local/bin/botb
+
 #Get Reg
 RUN curl -OL https://github.com/genuinetools/reg/releases/download/v0.16.1/reg-linux-amd64 && \
 mv reg-linux-amd64 /usr/local/bin/reg && chmod +x /usr/local/bin/reg
