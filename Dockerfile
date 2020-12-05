@@ -69,6 +69,10 @@ RUN curl -OL https://get.helm.sh/helm-v3.1.1-linux-amd64.tar.gz && \
 tar -xzvf helm-v3.1.1-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm3 && \
 chmod +x /usr/local/bin/helm3 && rm -rf linux-amd64 && rm -f helm-v3.1.1-linux-amd64.tar.gz
 
+#Get keyctl-umask
+RUN curl -OL https://github.com/antitree/keyctl-unmask/releases/download/latest/keyctl-unmask && \
+mv keyctl-unmask /usr/local/bin && chmod +x /usr/local/bin/keyctl-unmask
+
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
 COPY /charts/* /charts/
