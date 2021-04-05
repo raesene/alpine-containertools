@@ -87,6 +87,9 @@ COPY /manifests/* /manifests/
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
+#SetUID shell might be handy
+RUN cp /bin/bash /bin/setuidbash && chmod 4755 /bin/setuidbash
+
 # Set the ETCD API to 3
 ENV ETCDCTL_API 3
 
