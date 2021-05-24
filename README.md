@@ -34,7 +34,7 @@ You can run this container with just a shell for interactive access with
 
 `docker run -it raesene/alpine-containertools /bin/bash`
 
-Alternatively if you don't specify a command it'll launch an SSH server with a random password. To use this with a docker image first, `docker run -d -p 2200:22 raesene/alpine-containertools` then `docker ps` to get the container name, then `docker logs <container>` to get the root password, then `ssh root@<ip>` 
+Alternatively if you don't specify a command it'll launch an SSH server with a random password. To use this with a docker image first, `docker run -d -p 3456:22 raesene/alpine-containertools` then `docker ps` to get the container name, then `docker logs <container>` to get the root password, then `ssh root@<ip>` 
 
 
 The SSH setup was based on ideas from https://github.com/fedora-cloud/Fedora-Dockerfiles/blob/master/ssh/entrypoint.sh and
