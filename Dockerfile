@@ -89,6 +89,9 @@ COPY /bin/keyctl-unmask /usr/local/bin/
 RUN mkdir /manifests
 COPY /manifests/* /manifests/
 
+RUN mkdir /scripts
+COPY /scripts/* /scripts/
+
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
