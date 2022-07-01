@@ -7,7 +7,7 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 RUN apk --update add python3 py3-pip py3-netifaces py3-prettytable py3-certifi \
 py3-chardet py3-future py3-idna py3-netaddr py3-parsing py3-six\
- openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux && \
+ openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux libcap libcap-ng-utils && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 
