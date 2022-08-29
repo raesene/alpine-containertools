@@ -65,6 +65,11 @@ RUN curl -OL https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz && \
 tar -xzvf helm-v3.7.0-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm && \
 chmod +x /usr/local/bin/helm && rm -rf linux-amd64 && rm -f helm-v3.7.0-linux-amd64.tar.gz
 
+#Get Helm2
+RUN curl -OL https://get.helm.sh/helm-v2.17.0-linux-amd64.tar.gz && \
+tar -xzvf helm-v2.17.0-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm2 && \
+chmod +x /usr/local/bin/helm && rm -rf linux-amd64 && rm -f helm-v2.17.0-linux-amd64.tar.gz
+
 #Get rbac-tool
 RUN curl -OL https://github.com/alcideio/rbac-tool/releases/download/v1.4.0/rbac-tool_v1.4.0_linux_amd64.tar.gz && \
 tar -xzvf rbac-tool_v1.4.0_linux_amd64.tar.gz && mv rbac-tool /usr/local/bin && chmod +x /usr/local/bin/rbac-tool && \
