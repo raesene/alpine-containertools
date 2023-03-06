@@ -20,7 +20,6 @@ This is an image with a load of common container tooling, for use when you need 
 - **amicontained** - https://github.com/genuinetools/amicontained/ - Tool to assess the environment your process is running in, for things like capabilities and seccomp filters that have been applied.
 - **reg** - https://github.com/genuinetools/reg
 - **conmachi** - https://github.com/nccgroup/conmachi - Similar to amicontained, handy tool for understanding the privileges of a container that you're running in
-- **boltbrowser** - https://github.com/br0xen/boltbrowser - This is a tool for viewing BoltDB format databaes (which is used by etcd)
 - **rakkess** - https://github.com/corneliusweig/rakkess - Tool for analyzing RBAC permissions
 - **kubectl-who-can** - https://github.com/aquasecurity/kubectl-who-can - Tool for analyzing RBAC permissions
 - **kube-hunter** - https://github.com/aquasecurity/kube-hunter - Tool for pentesting Kubernetes clusters
