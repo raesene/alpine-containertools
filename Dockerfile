@@ -79,6 +79,16 @@ rm -f rbac-tool_v1.4.0_linux_amd64.tar.gz LICENSE README.md
 RUN curl -OL https://github.com/quarkslab/kdigger/releases/download/v1.0.0/kdigger-linux-amd64 && \
 mv kdigger-linux-amd64 /usr/local/bin/kdigger && chmod +x /usr/local/bin/kdigger
 
+#Get nerdctl
+RUN curl -OL https://github.com/containerd/nerdctl/releases/download/v1.5.0/nerdctl-1.5.0-linux-amd64.tar.gz && \
+tar -xzvf nerdctl-1.5.0-linux-amd64.tar.gz && mv nerdctl /usr/local/bin && chmod +x /usr/local/bin/nerdctl && \
+rm -f nerdctl-1.5.0-linux-amd64.tar.gz
+
+#Get crictl
+RUN curl -OL https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.27.1/crictl-v1.27.1-linux-amd64.tar.gz && \
+tar -xzvf crictl-v1.27.1-linux-amd64.tar.gz && mv crictl /usr/local/bin && chmod +x /usr/local/bin/crictl && \
+rm -f crictl-v1.27.1-linux-amd64.tar.gz
+
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
 COPY /charts/* /charts/
