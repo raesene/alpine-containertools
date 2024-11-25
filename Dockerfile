@@ -7,7 +7,7 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 RUN apk --update add python3 py3-pip py3-netifaces py3-prettytable py3-certifi \
 py3-chardet py3-future py3-idna py3-netaddr py3-parsing py3-six\
- openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux libcap libcap-ng-utils iproute2 iptables && \
+ openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux libcap libcap-ng-utils iproute2 iptables gcompat && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 
@@ -57,8 +57,8 @@ RUN curl -LO https://github.com/corneliusweig/rakkess/releases/download/v0.4.4/r
 RUN curl -OL https://github.com/aquasecurity/kubectl-who-can/releases/download/v0.1.0/kubectl-who-can_linux_x86_64.tar.gz && \
 tar -xzvf kubectl-who-can_linux_x86_64.tar.gz && mv kubectl-who-can /usr/local/bin && rm -f kubectl-who-can_linux_x86_64.tar.gz
 
-#Get Kube-Hunter
-RUN pip3 install kube-hunter
+#Get Kube-Hunter - Retired as it's no longer actively developed
+# RUN pip3 install kube-hunter
 
 #Get Helm3
 RUN curl -OL https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz && \
@@ -88,6 +88,10 @@ rm -f nerdctl-1.5.0-linux-amd64.tar.gz
 RUN curl -OL https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.27.1/crictl-v1.27.1-linux-amd64.tar.gz && \
 tar -xzvf crictl-v1.27.1-linux-amd64.tar.gz && mv crictl /usr/local/bin && chmod +x /usr/local/bin/crictl && \
 rm -f crictl-v1.27.1-linux-amd64.tar.gz
+
+#Get JWT
+RUN curl -OL https://github.com/mike-engel/jwt-cli/releases/download/6.1.1/jwt-linux.tar.gz && \
+tar -xzvf jwt-linux.tar.gz && mv jwt /usr/local/bin && chmod +x /usr/local/bin/jwt && rm -f jwt-linux.tar.gz
 
 #Put a Sample Privileged Pod Chart in the Image
 RUN mkdir /charts
