@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.20
 
 
 LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
@@ -7,20 +7,16 @@ LABEL maintainer="Rory McCune <rorym@mccune.org.uk>"
 
 RUN apk --update add python3 py3-pip py3-netifaces py3-prettytable py3-certifi \
 py3-chardet py3-future py3-idna py3-netaddr py3-parsing py3-six\
- openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux libcap libcap-ng-utils iproute2 iptables gcompat && \
+ openssh nmap nmap-scripts curl tcpdump ruby bind-tools jq nmap-ncat bash util-linux libcap libcap-ng-utils iproute2 iptables gcompat file && \
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config && rm -rf /var/cache/apk/*
 
 
-#Kubernetes 1.12 for old clusters
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.12.8/bin/linux/amd64/kubectl && \
-chmod +x kubectl && mv kubectl /usr/local/bin/kubectl112
-
-#Kubernetes 1.16 for medium old clusters
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.16.7/bin/linux/amd64/kubectl && \
-chmod +x kubectl && mv kubectl /usr/local/bin/kubectl116
-
-#Kubernetes 1.21 for new clusters
+#Kubernetes 1.21 for old clusters
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.21.5/bin/linux/amd64/kubectl && \
+chmod +x kubectl && mv kubectl /usr/local/bin/kubectl21
+
+#Kubernetes 1.31 for new clusters
+RUN curl -OL https://dl.k8s.io/v1.31.3/bin/linux/amd64/kubectl && \
 chmod +x kubectl && mv kubectl /usr/local/bin/kubectl
 
 #Get docker we're not using the apk as it includes the server binaries that we don't need
